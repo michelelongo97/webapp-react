@@ -1,5 +1,6 @@
 import axios from "../api/axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import Container from "../components/ui/Container";
 import Card from "../components/ui/Card";
 
@@ -24,6 +25,7 @@ export default function HomePage() {
                 image={movie.image}
                 title={movie.title}
                 content={movie.abstract}
+                link={`/movies/${movie.id}`}
               />
             </div>
           ))}

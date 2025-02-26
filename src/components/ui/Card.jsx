@@ -1,6 +1,7 @@
 import Button from "./Button";
+import { Link } from "react-router";
 
-export default function Card({ image, title, content }) {
+export default function Card({ image, title, content, link }) {
   return (
     <div className="bg-danger d-flex col-6">
       <div className="col-6">
@@ -9,9 +10,11 @@ export default function Card({ image, title, content }) {
       <div className="p-4 col-6">
         <h3>{title}</h3>
         <p className="py-5">{content}</p>
-        <Button variant="secondary" size="sm">
-          Leggi
-        </Button>
+        <Link to={link}>
+          <Button variant="secondary" size="sm">
+            Leggi
+          </Button>
+        </Link>
       </div>
     </div>
   );

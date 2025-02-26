@@ -1,6 +1,7 @@
 import axios from "../api/axios";
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import Container from "../components/ui/Container";
 
 export default function MoviePage() {
   const [movie, setMovie] = useState({});
@@ -22,5 +23,21 @@ export default function MoviePage() {
 
   useEffect(fetchMovie, [id, navigate]);
 
-  return <h1>Pagina del film: {movie.title}</h1>;
+  return (
+    <Container>
+      <div className="d-flex bg-danger m-5">
+        <div className="col-6">
+          <img
+            className="w-100"
+            src={`http://localhost:3000/movies_cover/${movie.image}`}
+            alt={movie.title}
+          />
+        </div>
+        <div className="p-4 col-6">
+          <h1>{movie.title}</h1>
+          <p className="py-5">{movie.abstract}</p>
+        </div>
+      </div>
+    </Container>
+  );
 }
