@@ -3,6 +3,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 import PageNotFound from "./pages/PageNotFound";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   return (
