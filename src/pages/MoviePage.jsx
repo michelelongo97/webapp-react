@@ -38,6 +38,17 @@ export default function MoviePage() {
           <p className="py-5">{movie.abstract}</p>
         </div>
       </div>
+      <div className="bg-danger m-5 p-3">
+        <h2>Recensioni</h2>
+        <hr />
+        {movie.reviews.map((review) => (
+          <div key={review.id}>
+            <h4>{review.name}</h4>
+            <p>{review.text}</p>
+          </div>
+        ))}
+      </div>
+      <div className="bg-danger m-5 p-3"></div>
     </Container>
   );
 }
