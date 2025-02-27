@@ -2,6 +2,7 @@ import axios from "../api/axios";
 import { useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import Container from "../components/ui/Container";
+import FormAddReview from "../components/FormAddReview";
 
 export default function MoviePage() {
   const [movie, setMovie] = useState({});
@@ -48,7 +49,11 @@ export default function MoviePage() {
           </div>
         ))}
       </div>
-      <div className="bg-danger m-5 p-3"></div>
+      <div className="bg-danger m-5 p-3">
+        <h3>Aggiungi una recensione</h3>
+        <hr />
+        <FormAddReview />
+      </div>
     </Container>
   );
 }
