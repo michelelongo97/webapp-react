@@ -1,8 +1,44 @@
+import { useState } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 import Button from "./ui/Button";
 
-export default function FormAddReview() {
+const initialFormData = {
+  name: "",
+  text: "",
+  vote: 0,
+};
+
+export default function FormAddReview({ onFormSubmitted }) {
+  const [formData, setFormData] = useState(initialFormData);
+  const { id } = useParams();
+
+  const handleField = (fieldName, fieldValue) => {
+    setFormData((currentFormData) => {
+      return {
+        ...currentFormData,
+        [fieldName]: fieldValue,
+      };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`http://localhost:3000/movies/${id}/reviews`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(() => {
+        setFormData(initialFormData);
+        onFormSubmitted();
+      });
+  };
+
   return (
-    <form className="text-center">
+    <form className="text-center" onSubmit={handleSubmit}>
       <div>
         <label className="form-label p-1" htmlFor="name">
           Nome
@@ -13,6 +49,8 @@ export default function FormAddReview() {
           name="name"
           type="text"
           placeholder="Insersci il tuo nome"
+          value={formData.name}
+          onChange={(e) => handleField("name", e.target.value)}
           required
         />
       </div>
@@ -26,6 +64,8 @@ export default function FormAddReview() {
           name="vote"
           type="number"
           placeholder="Insersci il voto"
+          value={formData.vote}
+          onChange={(e) => handleField("vote", e.target.value)}
           min={0}
           max={5}
           required
@@ -41,8 +81,10 @@ export default function FormAddReview() {
           name="text"
           rows={5}
           placeholder="Insersci la recensione"
+          value={formData.text}
+          onChange={(e) => handleField("text", e.target.value)}
           required
-        />
+        ></textarea>
       </div>
       <Button className="m-3" type="submit">
         Invia

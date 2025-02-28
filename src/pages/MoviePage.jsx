@@ -42,7 +42,8 @@ export default function MoviePage() {
       <div className="bg-danger m-5 p-3">
         <h2>Recensioni</h2>
         <hr />
-        {movie.reviews.map((review) => (
+
+        {movie?.reviews?.map((review) => (
           <div key={review.id}>
             <h4>{review.name}</h4>
             <p>{review.text}</p>
@@ -52,7 +53,7 @@ export default function MoviePage() {
       <div className="bg-danger m-5 p-3">
         <h3>Aggiungi una recensione</h3>
         <hr />
-        <FormAddReview />
+        <FormAddReview onFormSubmitted={fetchMovie} />
       </div>
     </Container>
   );
